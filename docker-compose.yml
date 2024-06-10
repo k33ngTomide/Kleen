@@ -19,6 +19,23 @@ services:
       PGADMIN_DEFAULT_EMAIL: tomide@gmail.com
       PGADMIN_DEFAULT_PASSWORD: admin_password
 
+  prometheus:
+    image: prom/prometheus
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+    ports:
+      - 9090:9090
+
+  grafana:
+    image: grafana/grafana
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana-data:/var/lib/grafana
+
+volumes:
+    grafana-data:
+
 networks:
   local:
     name: local
