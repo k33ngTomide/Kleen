@@ -6,3 +6,10 @@ logging:
 spring:
   profiles:
     active: ${SPRING_PROFILES_ACTIVE:local}
+
+  config:
+    import: optional:secret.properties
+
+
+server:
+  port: ${PORT:8080}

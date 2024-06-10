@@ -1,16 +1,18 @@
 spring:
-    datasource:
-      url: jdbc:postgresql://localhost:5432/kleen_db
-      username: Tomide
-      password: A#1234MuiliyuSodiq
-      driver-class-name: org.postgresql.Driver
-    jpa:
+  datasource:
+    url: jdbc:postgresql://${HOST}:${DB_PORT}/${DB_NAME}
+    username: ${USERNAME}
+    password: ${PASSWORD}
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create
+    show-sql: true
+    properties:
       hibernate:
-        ddl-auto: create
-      show-sql: true
-      properties:
-        hibernate:
-          dialect: org.hibernate.dialect.PostgreSQLDialect
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+  config:
+    import: optional:secret.properties
 
 
 logging:
