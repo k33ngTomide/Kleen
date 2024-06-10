@@ -3,15 +3,14 @@ version: '3.18'
 services:
 
   db:
-    image: mysql:latest
+    image: postgres:alpine
     restart: always
     ports:
-      - 3306:3306
+      - 5431:5432
     environment:
-      MYSQL_ROOT_PASSWORD: root_password
-      MYSQL_DATABASE: KleenDb
-      MYSQL_USER: your_username
-      MYSQL_PASSWORD: your_password
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USERNAME: postgres
+
 
 networks:
   local:
