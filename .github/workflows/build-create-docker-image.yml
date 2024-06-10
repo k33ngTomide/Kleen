@@ -38,9 +38,15 @@ jobs:
         uses: actions/setup-node@v2
         with:
           node-version: '14'
-        
-      - name: Build, tag image
-        id: build-image
-        run: |
-          docker build -t k33ngtomide\Kleen:latest .
 
+      - name: Login to Docker Hub
+        uses: docker/login-action@v3
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+      - name: Build and push
+        uses: docker/build-push-action@v5
+        with:
+          push: true
+          tags: k33ngtomide/kleen
