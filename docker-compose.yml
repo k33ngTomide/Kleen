@@ -1,0 +1,42 @@
+version: '3.18'
+
+services:
+
+  db:
+    image: postgres:alpine
+    restart: always
+    ports:
+      - 5431:5432
+    environment:
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_USERNAME: postgres
+
+  keycloak:
+    image: quay.io/keycloak/keycloak:latest
+    command: [ 'start-dev' ]
+    ports:
+      - 8090:8080
+    environment:
+      KEYCLOAK_ADMIN: admin
+      KEYCLOAK_ADMIN_PASSWORD: admin
+
+
+  rabbitmq:
+    image: rabbitmq:3.11-management-alpine
+    ports:
+      - 5672:5672
+      - 15672:15672
+    environment:
+      RABBITMQ_DEFAULT_USER: guest
+      RABBITMQ_DEFAULT_PASS: guest
+      RABBITMQ_DEFAULT_VHOST: /
+    volumes:
+      - ./rabbitmq-data:/var/lib/rabbitmq
+
+networks:
+  local:
+    name: local
+    driver: bridge
+  rabbitmq:
+    name: rabbitmq
+    driver: bridge

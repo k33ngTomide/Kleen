@@ -1,0 +1,49 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    database: postgresql
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          issuer-uri: ${keycloak.server}/realms/${keycloak.realm}
+
+MAIL_HOST: ${EMAIL_HOST:sandbox.smtp.mailtrap.io}
+MAIL_PORT: ${EMAIL_PORT:2525}
+MAIL_USERNAME: ${EMAIL_USERNAME}
+MAIL_PASSWORD: ${EMAIL_PASSWORD}
+MAIL_SENDER: ${EMAIL_SENDER}
+
+
+keycloak:
+  server: http://localhost:8090
+  username: admin
+  password: admin
+  realm:
+  client:
+  principal_attribute: preferred_username
+  enabled:
+jwt:
+  secret: ${JWT_SECRET}
+  expiration: ${JWT_EXPIRATION:3600}
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+
+springdoc:
+  swagger-ui:
+    path: '/swagger-ui.html'
+    filter: true
+    tags-sorter: alpha
