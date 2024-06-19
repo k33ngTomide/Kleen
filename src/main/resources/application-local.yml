@@ -1,6 +1,9 @@
 spring:
+  config:
+    import: optional:secret.properties
+
   datasource:
-    url: jdbc:postgresql://${HOST}:${DB_PORT}/${DB_NAME}
+    url: ${DB_URL}
     username: ${USERNAME}
     password: ${PASSWORD}
     driver-class-name: org.postgresql.Driver
@@ -11,9 +14,6 @@ spring:
     properties:
       hibernate:
         dialect: org.hibernate.dialect.PostgreSQLDialect
-  config:
-    import: optional:secret.properties
-
 
 logging:
   level:
