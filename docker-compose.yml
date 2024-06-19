@@ -19,6 +19,16 @@ services:
       PGADMIN_DEFAULT_EMAIL: tomide@gmail.com
       PGADMIN_DEFAULT_PASSWORD: admin_password
 
+  grafana:
+    image: grafana/grafana
+    ports:
+      - 3000:3000
+    volumes:
+      - grafana-data:/var/lib/grafana
+
+volumes:
+    grafana-data:
+
 networks:
   local:
     name: local
